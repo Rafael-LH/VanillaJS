@@ -1,29 +1,27 @@
 
 
     // utilizando async y await
-        // const fetchAPI = async () => {
+        const fetchAPI = async () => {
 
-        //        try {
+               try {
 
-        //            const data = await fetch('https://randomuser.me/api/',{method: 'GET'})
-        //            const dataResponse = await data.json()
-        //            const response = dataResponse
+                   const data = await fetch('https://randomuser.me/api/',{method: 'GET'})
+                   const dataResponse = await data.json()
+                   console.log(dataResponse.results[0]);
 
-        //            console.log(response.results[0]);
-
-        //        } catch (error) {
-        //            console.log(`Ha ocurrido algun problema ${error}`)
-        //        }
-        // }
+               } catch (error) {
+                   console.log(`Ha ocurrido algun problema ${error}`)
+               }
+        }
 
     // utilizando promises
-         const fetchAPI = () => {
+        //  const fetchAPI = () => {
 
-                    fetch('https://randomuser.me/api/',{method: 'GET'})
-                   .then(dataResponse => dataResponse.json() )
-                   .then(response => console.log(response.results[0]) )
-                   .catch(err => console.log(`Ha ocurrido algun problema ${err}`) ) 
+        //             fetch('https://randomuser.me/api/',{method: 'GET'})
+        //            .then(dataResponse => dataResponse.json() )
+        //            .then(response => console.log(response.results[0]) )
+        //            .catch(err => console.log(`Ha ocurrido algun problema ${err}`) ); 
 
-        }
+        // }
 
         fetchAPI()
