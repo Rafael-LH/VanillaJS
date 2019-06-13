@@ -1,0 +1,41 @@
+{
+  "name": "vanillajs",
+  "version": "1.0.0",
+  "description": "Vanilla JS, Curdo en Platzi",
+  "main": "index.js",
+  "scripts": {
+    "build:dev": "webpack-dev-server --env.NODE_ENV=development",
+    "build:prod": "webpack -p -w --env.NODE_ENV=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rafael-LH/VanillaJS.git"
+  },
+  "keywords": [
+    "Webpack",
+    "JS"
+  ],
+  "author": "Rafael Lopez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rafael-LH/VanillaJS/issues"
+  },
+  "homepage": "https://github.com/Rafael-LH/VanillaJS#readme",
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/plugin-proposal-class-properties": "7.4.4",
+    "@babel/plugin-transform-runtime": "7.4.4",
+    "@babel/preset-env": "7.4.5",
+    "@babel/runtime": "7.4.5",
+    "babel-loader": "8.0.6",
+    "url-loader": "2.0.0",
+    "webpack": "4.34.0",
+    "webpack-cli": "3.3.4",
+    "webpack-dev-server": "3.7.1"
+  },
+  "dependencies": {
+    "css-loader": "^3.0.0",
+    "mini-css-extract-plugin": "^0.7.0",
+    "style-loader": "^0.23.1"
+  }
+}
