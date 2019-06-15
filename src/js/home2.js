@@ -1,56 +1,17 @@
-import videoItemTemplate from './modules/videoItemTemplate'
 import '../css/styles.css'
-
-
-        const fetchAPI = async () => {
-
-               try {
-                   const getData = async url => {
-                        const data = await fetch(url)
-                        return await data.json()
-                   }
-                   let rute = 'https://yts.lt/api/v2/list_movies.json?genre=';
-
-                    const listMovies = (dataList, getElement) => {
-                         dataList.data.movies.forEach(movie => {
-                                const HTMLString = videoItemTemplate(movie.large_cover_image, movie.title) 
-                                getElement.innerHTML += HTMLString
-                        });
-                    }
-                    
-                    let responseActionList = await getData(`${rute}action`)
-                    //   console.log('Action List', responseActionList.data.movies)
-                    listMovies(responseActionList, document.getElementById('action') )
-
-                    // responseActionList.data.movies.forEach(movie => {
-                    //             let HTMLString =  videoItemTemplate(movie.large_cover_image, movie.title)
-                    //                 document.getElementById('action').innerHTML += HTMLString
-
-                                // Otra forma de hacerlo
-                                //primero creamos un documento de HTML para que no imprima en html solo texto como si estubieramos poniendo <h1>Hola</h1> pero como
-                                //texto plano en html
-                                // const html = document.implementation.createHTMLDocument() 
-                                // const DOM = document.getElementById('drama')
-                                // // agrego al body con innerHTML lo que estoy trayendo de mi funcion videoItemTemplate por cada iteracion
-                                // html.body.innerHTML = HTMLString;
-                                // // depues con append agrego lo que acabo de agregar al body por lo tanto estara en la posicion numero 0 que es la primera
-                                // DOM.append(html.body.children[0])
-                    // });
-
-                   let reponseDramaList = await getData(`${rute}drama`)
-                  //console.log('Drama List:', reponseDramaList.data.movies )
-                  listMovies(reponseDramaList, document.getElementById('drama'))
-                  
-
-                   let reponseAnimationList = await getData(`${rute}animation`)
-                    //console.log('Animation List:', reponseAnimationList.data.movies )
-                    listMovies(reponseAnimationList, document.getElementById('animation'))
-
-                   
-               } catch (error) {
-                   console.log(`Ha ocurrido algun error ${error}` )
-               }  
+import fetchMovies from './modules/fetchMovies'
+        
+        fetchMovies()
             
-        }
+        document.getElementById("form").addEventListener("submit", e => {
+                        e.preventDefault()
 
-        fetchAPI()
+                        //Con classList tenemos los metodos de add , remove y toggle
+                        //Si yo me voy al inspecto y selecciono un elemento de html y despues me paso a la consola
+                        //y pongo $0 me traera el elemento html que seleccione
+
+               document.getElementById('home').classList.toggle('search-active');
+               document.getElementById('featuring-sub-cont').classList.toggle('show-featuring')
+
+        })
+

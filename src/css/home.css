@@ -27,6 +27,7 @@ body {
   grid-area: featuring;
   display: grid;
 }
+
 .home-featuring img {
   align-self: center;
   justify-self: center;
@@ -225,6 +226,11 @@ body {
   align-items: center;
   padding-left: 100px;
   color: white;
+  display: none;
+}
+
+.show-featuring{
+  display: inline-flex;
 }
 
 .featuring-image {
