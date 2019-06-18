@@ -2,24 +2,21 @@ import videoItemTemplate from './videoItemTemplate'
 
 const fetchMovies = async () => {
 
+    let loader = true;
+
     try {
         const getData = async url => {
              const data = await fetch(url)
              return await data.json()
         }
-        let rute = 'https://yts.lt/api/v2/list_movies.json?genre=';
-
-        // let elemento = document.getElementsByClassName('primaryPlaylistItem')  
-        //     console.log(elemento)
-              
-
+         let rute = 'https://yts.lt/api/v2/list_movies.json?genre=';
+            
          const listMovies = (dataList, getElement) => {
-              dataList.data.movies.forEach(movie => {
+
+            dataList.data.movies.forEach(movie => {
+                     
                      const HTMLString = videoItemTemplate(movie.large_cover_image, movie.title) 
                      getElement.innerHTML += HTMLString
-
-                    // addEventClick(HTMLString)
-
              });
          }
 
@@ -50,6 +47,15 @@ const fetchMovies = async () => {
         let reponseAnimationList = await getData(`${rute}animation`)
          //console.log('Animation List:', reponseAnimationList.data.movies )
          listMovies(reponseAnimationList, document.getElementById('animation'))
+
+            let DomList = document.getElementsByClassName('primaryPlaylistItem')
+            let DomTam = DomList.length;
+            
+            for (let i = 0; i < DomTam; i++) {
+                DomList[i].addEventListener('click', e => {
+                            alert('Holi');
+                 });
+            }
 
         
     } catch (error) {
