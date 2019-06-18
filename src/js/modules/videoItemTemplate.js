@@ -3,7 +3,7 @@
     const videoItemTemplate = (url, title) => (
             `<div class="primaryPlaylistItem">
                 <div class="primaryPlaylistItem-image">
-                <img src="${url}">
+                <img class="img-list" src="${url}">
                 </div>
                 <h4 class="primaryPlaylistItem-title">
                 ${title}

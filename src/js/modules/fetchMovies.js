@@ -2,13 +2,25 @@ import videoItemTemplate from './videoItemTemplate'
 
 const fetchMovies = async () => {
 
-    let loader = true;
-
     try {
         const getData = async url => {
              const data = await fetch(url)
              return await data.json()
         }
+
+         const showModal = img => {
+                document.getElementById('overlay').classList.add('active') 
+                document.getElementById('modal').style.animation = 'modalIn .8s forwards' 
+                document.getElementById('img-modal').setAttribute('src', img)
+
+         }   
+
+         const hideModal = () => {
+               document.getElementById('overlay').classList.remove('active') 
+               document.getElementById('modal').style.animation = "modalOut .8s forwards" 
+         }
+         document.getElementById('hide-modal').addEventListener('click', e => hideModal() )
+
          let rute = 'https://yts.lt/api/v2/list_movies.json?genre=';
             
          const listMovies = (dataList, getElement) => {
@@ -53,7 +65,7 @@ const fetchMovies = async () => {
             
             for (let i = 0; i < DomTam; i++) {
                 DomList[i].addEventListener('click', e => {
-                            alert('Holi');
+                            showModal(document.getElementsByClassName('img-list')[i].getAttribute('src') )
                  });
             }
 
