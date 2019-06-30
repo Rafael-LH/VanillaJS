@@ -1,5 +1,6 @@
 import videoItemTemplate from './videoItemTemplate'
 import templateFeaturing from './templateFeaturing'
+import CloseFooter from './CloseFooter'
 
 const fetchMovies = async () => {
 
@@ -122,7 +123,9 @@ const fetchMovies = async () => {
                 featuring.innerHTML = templateFeaturing(dataPeli)
 
                document.getElementById('home').classList.add('search-active');
-               document.getElementById('featuring-sub-cont').classList.add('show-featuring')            
+               document.getElementById('featuring-sub-cont').classList.add('show-featuring')   
+               
+               CloseFooter()
 
         })
         
