@@ -10,10 +10,12 @@ const fetchMovies = async () => {
              return await data.json()
         }
 
-         const showModal = img => {
+         const showModal = (img, summary, title) => {
                 document.getElementById('overlay').classList.add('active') 
                 document.getElementById('modal').style.animation = 'modalIn .8s forwards' 
                 document.getElementById('img-modal').setAttribute('src', img)
+                document.getElementById('summary').innerHTML = `${summary}`
+                document.getElementById('title-movie').innerHTML = `${title}`
 
          }   
 
@@ -29,7 +31,7 @@ const fetchMovies = async () => {
 
             dataList.data.movies.forEach(movie => {
                      
-                     const HTMLString = videoItemTemplate(movie.large_cover_image, movie.title) 
+                     const HTMLString = videoItemTemplate(movie.large_cover_image, movie.title, movie.summary) 
                      getElement.innerHTML += HTMLString
              });
          }
@@ -57,9 +59,9 @@ const fetchMovies = async () => {
          //console.log('Drama List:', reponseDramaList.data.movies )
          listMovies(reponseDramaList, document.getElementById('drama'))
        
-
         let reponseAnimationList = await getData(`${rute}animation`)
          //console.log('Animation List:', reponseAnimationList.data.movies )
+
          listMovies(reponseAnimationList, document.getElementById('animation'))
 
             let DomList = document.getElementsByClassName('primaryPlaylistItem')
@@ -67,7 +69,11 @@ const fetchMovies = async () => {
             
             for (let i = 0; i < DomTam; i++) {
                 DomList[i].addEventListener('click', e => {
-                            showModal(document.getElementsByClassName('img-list')[i].getAttribute('src') )
+                            let img = document.getElementsByClassName('img-list')[i].getAttribute('src');
+                            let summary = document.getElementsByClassName('summary')[i].value;
+                            let title = document.getElementsByClassName('title-movie')[i].value;
+
+                            showModal(img, summary, title)
                  });
             }
 
