@@ -1,15 +1,17 @@
 
 
-    const videoItemTemplate = (url, title, summary) => (
-            `<div class="primaryPlaylistItem">
+    const videoItemTemplate = (url, title, summary, id) => (
+            `<div class="primaryPlaylistItem" data-img="${url}"
+                                              data-id="${id}"
+                                              data-title="${title}"
+                                              data-summary="${summary}" >
                 <div class="primaryPlaylistItem-image">
                 <img class="img-list" src="${url}">
                 </div>
                 <h4 class="primaryPlaylistItem-title">
                 ${title}
                 </h4>
-                <input type="text" hidden class="summary" value="${summary}" />
-                <input type="text" hidden class="title-movie" value="${title}" />
+
             </div>`
     )
 

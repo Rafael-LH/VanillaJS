@@ -11,6 +11,7 @@ const fetchMovies = async () => {
         }
 
          const showModal = (img, summary, title) => {
+
                 document.getElementById('overlay').classList.add('active') 
                 document.getElementById('modal').style.animation = 'modalIn .8s forwards' 
                 document.getElementById('img-modal').setAttribute('src', img)
@@ -29,10 +30,11 @@ const fetchMovies = async () => {
             
          const listMovies = (dataList, getElement) => {
 
-            dataList.data.movies.forEach(movie => {
+            dataList.forEach(movie => {
                      
-                     const HTMLString = videoItemTemplate(movie.large_cover_image, movie.title, movie.summary) 
+                     const HTMLString = videoItemTemplate(movie.large_cover_image, movie.title, movie.summary, movie.id) 
                      getElement.innerHTML += HTMLString
+
              });
          }
 
@@ -51,29 +53,44 @@ const fetchMovies = async () => {
                                 // DOM.append(html.body.children[0])
                     // });
          
-         let responseActionList = await getData(`${rute}action`)
-            //console.log('Action List', responseActionList.data.movies)
+        //  destructuring
+         let { data: { movies: responseActionList } }  = await getData(`${rute}action`)
+            // console.log('Action List: ', responseActionList[0].genres[0])
            listMovies(responseActionList, document.getElementById('action') )
-
-        let reponseDramaList = await getData(`${rute}drama`)
+        
+           //  destructuring
+        let { data: { movies: reponseDramaList } }  = await getData(`${rute}drama`)
          //console.log('Drama List:', reponseDramaList.data.movies )
          listMovies(reponseDramaList, document.getElementById('drama'))
-       
-        let reponseAnimationList = await getData(`${rute}animation`)
-         //console.log('Animation List:', reponseAnimationList.data.movies )
 
+         //  destructuring
+        let { data: { movies: reponseAnimationList } } = await getData(`${rute}animation`)
+         //console.log('Animation List:', reponseAnimationList.data.movies )
          listMovies(reponseAnimationList, document.getElementById('animation'))
+
 
             let DomList = document.getElementsByClassName('primaryPlaylistItem')
             let DomTam = DomList.length;
             
             for (let i = 0; i < DomTam; i++) {
                 DomList[i].addEventListener('click', e => {
-                            let img = document.getElementsByClassName('img-list')[i].getAttribute('src');
-                            let summary = document.getElementsByClassName('summary')[i].value;
-                            let title = document.getElementsByClassName('title-movie')[i].value;
+                            // let img = document.getElementsByClassName('img-list')[i].getAttribute('src');
+
+                            const baseHtml = document.getElementsByClassName('primaryPlaylistItem')[i]
+
+                            //cuando le pasamos atributos a una etiqueta de html como por ejemplo data-id="1"
+                            //ese valor lo podemos obtener con el elemento HTML ya que lo tenemos podemos utilizar la propiedad
+                            //dataset y entre parentesis y comillas ponemos el nombre del atributo que queremos traer
+                            //por ejemplo si queremos traer el data-id="1" lo hacemos asi htm.dataset.id y de esta manera nos trairiamos
+                            // nuesto valor del id. ojo no debemos poner data-id porque en la propiedad de dataset hace referencia  a un data
+                            // y ya solo tu le indicas a cual
+                            const img = baseHtml.dataset.img,
+                                  summary = baseHtml.dataset.summary,
+                                  title = baseHtml.dataset.title;
+                            
 
                             showModal(img, summary, title)
+
                  });
             }
 
