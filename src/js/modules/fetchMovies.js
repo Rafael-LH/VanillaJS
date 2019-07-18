@@ -29,14 +29,27 @@ const fetchMovies = async () => {
          let rute = 'https://yts.lt/api/v2/list_movies.json?genre=';
             
          const listMovies = (dataList, getElement) => {
-
+            let i = 0;
             dataList.forEach(movie => {
+                    
+                    const HTMLString = videoItemTemplate(movie.large_cover_image, movie.title, movie.summary, movie.id) 
+                    getElement.innerHTML += HTMLString
                      
-                     const HTMLString = videoItemTemplate(movie.large_cover_image, movie.title, movie.summary, movie.id) 
-                     getElement.innerHTML += HTMLString
-
              });
+
+             AnimationImg()
          }
+
+         function AnimationImg(){
+                const $tam = document.querySelectorAll('img').length
+                const $element = document.querySelectorAll('img')
+
+             for (let i = 0; i < $tam; i++) {
+                    $element[i].classList.add('fadeIn')
+             }   
+
+        }
+
 
           // responseActionList.data.movies.forEach(movie => {
                     //             let HTMLString =  videoItemTemplate(movie.large_cover_image, movie.title)
@@ -150,7 +163,7 @@ const fetchMovies = async () => {
                
                CloseFooter()
 
-        })
+        })//cierre form addEventeListener
         
     } catch (error) {
         console.log(`Ha ocurrido algun error ${error}` )

@@ -27,6 +27,7 @@ body {
   grid-area: featuring;
   display: grid;
 }
+
 .home-featuring img {
   align-self: center;
   justify-self: center;
@@ -225,6 +226,24 @@ body {
   align-items: center;
   padding-left: 100px;
   color: white;
+  display: none;
+  position: relative;
+}
+.featuring span{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 2.3em;
+    padding: 0px 9px;
+    cursor: pointer;
+    transition: all .7s;
+  }
+.featuring span:hover{
+    transition: all .7s;
+    color: rgb(221, 223, 224);
+}
+.show-featuring{
+  display: inline-flex;
 }
 
 .featuring-image {
@@ -241,7 +260,7 @@ body {
 
 
 .fadeIn {
-  animation: 1000ms fadeIn;
+  animation: 5000ms fadeIn;
 }
 
 @keyframes fadeIn {
