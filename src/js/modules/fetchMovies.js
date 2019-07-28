@@ -66,21 +66,26 @@ const fetchMovies = async () => {
                                 // DOM.append(html.body.children[0])
                     // });
          
-        //  destructuring
-         let { data: { movies: responseActionList } }  = await getData(`${rute}action`)
-            // console.log('Action List: ', responseActionList[0].genres[0])
-           listMovies(responseActionList, document.getElementById('action') )
-        
-           //  destructuring
-        let { data: { movies: reponseDramaList } }  = await getData(`${rute}drama`)
-         //console.log('Drama List:', reponseDramaList.data.movies )
-         listMovies(reponseDramaList, document.getElementById('drama'))
+            //  destructuring
+            let { data: { movies: responseActionList } }  = await getData(`${rute}action`)
+                // console.log('Action List: ', responseActionList[0].genres[0])
+            listMovies(responseActionList, document.getElementById('action') )
+            //le tenemos que poner el JSON.stringify porque si no nos retornara un json con "object":"object"
+            localStorage.setItem('ActionList', JSON.stringify(responseActionList) )
 
-         //  destructuring
-        let { data: { movies: reponseAnimationList } } = await getData(`${rute}animation`)
-         //console.log('Animation List:', reponseAnimationList.data.movies )
-         listMovies(reponseAnimationList, document.getElementById('animation'))
+            //  destructuring
+            let { data: { movies: reponseDramaList } }  = await getData(`${rute}drama`)
+            //console.log('Drama List:', reponseDramaList.data.movies )
+            listMovies(reponseDramaList, document.getElementById('drama'))
+            //le tenemos que poner el JSON.stringify porque si no nos retornara un json con "object":"object"
+            localStorage.setItem('DramaList', JSON.stringify(reponseDramaList) )
 
+            //  destructuring
+            let { data: { movies: reponseAnimationList } } = await getData(`${rute}animation`)
+            //console.log('Animation List:', reponseAnimationList.data.movies )
+            listMovies(reponseAnimationList, document.getElementById('animation'))
+            //le tenemos que poner el JSON.stringify porque si no nos retornara un json con "object":"object"
+            localStorage.setItem('AnimationList', JSON.stringify(reponseAnimationList) )
 
             let DomList = document.getElementsByClassName('primaryPlaylistItem')
             let DomTam = DomList.length;
@@ -137,6 +142,11 @@ const fetchMovies = async () => {
                
                 const featuring =  document.getElementById('featuring')
                 const loader = document.createElement('img')
+
+                const $featuringRemove = document.getElementById('featuring-sub-cont'); 
+
+                ($featuringRemove) ? $featuringRemove.classList.remove('show-featuring') : '';
+
                 setAttributes(loader, {
                         src: 'src/images/loader.gif',
                         height: 50,
@@ -159,7 +169,7 @@ const fetchMovies = async () => {
                 featuring.innerHTML = templateFeaturing(dataPeli)
 
                document.getElementById('home').classList.add('search-active');
-               document.getElementById('featuring-sub-cont').classList.add('show-featuring')   
+               document.getElementById('featuring-sub-cont').classList.add('show-featuring')
                
                CloseFooter()
 

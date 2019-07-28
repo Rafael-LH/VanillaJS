@@ -1,8 +1,9 @@
 import '../css/styles.css'
 import fetchMovies from './modules/fetchMovies'
+import FetchUsers from './modules/FetchUsers'
         
-        //modulo fetch
         fetchMovies()
+        FetchUsers()
 
         
 
