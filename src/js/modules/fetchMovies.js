@@ -71,21 +71,21 @@ const fetchMovies = async () => {
                 // console.log('Action List: ', responseActionList[0].genres[0])
             listMovies(responseActionList, document.getElementById('action') )
             //le tenemos que poner el JSON.stringify porque si no nos retornara un json con "object":"object"
-            localStorage.setItem('ActionList', JSON.stringify(responseActionList) )
+            // localStorage.setItem('ActionList', JSON.stringify(responseActionList) )
 
             //  destructuring
             let { data: { movies: reponseDramaList } }  = await getData(`${rute}drama`)
             //console.log('Drama List:', reponseDramaList.data.movies )
             listMovies(reponseDramaList, document.getElementById('drama'))
             //le tenemos que poner el JSON.stringify porque si no nos retornara un json con "object":"object"
-            localStorage.setItem('DramaList', JSON.stringify(reponseDramaList) )
+            // localStorage.setItem('DramaList', JSON.stringify(reponseDramaList) )
 
             //  destructuring
             let { data: { movies: reponseAnimationList } } = await getData(`${rute}animation`)
             //console.log('Animation List:', reponseAnimationList.data.movies )
             listMovies(reponseAnimationList, document.getElementById('animation'))
             //le tenemos que poner el JSON.stringify porque si no nos retornara un json con "object":"object"
-            localStorage.setItem('AnimationList', JSON.stringify(reponseAnimationList) )
+            // localStorage.setItem('AnimationList', JSON.stringify(reponseAnimationList) )
 
             let DomList = document.getElementsByClassName('primaryPlaylistItem')
             let DomTam = DomList.length;
